@@ -1,0 +1,35 @@
+/* ===================================================================
+   Design tokens — Coiffure De Zaat (fase 6: "premium / maison")
+   Eén bron voor kleur, typografie en ritme. Wijzig hier, nooit inline.
+   =================================================================== */
+:root {
+  /* kleur — monochroom canvas, roze enkel als detail */
+  --kleur-been:        #f7f4ee;  /* canvas */
+  --kleur-inkt:        #191817;  /* tekst, primaire knoppen (16.2:1) */
+  --kleur-grijs:       #575249;  /* secundaire tekst (7.1:1 op been) */
+  --kleur-lijn:        rgba(25, 24, 23, .16);
+  --kleur-roze:        #b98d7e;  /* decoratief / op donker (6.1:1 op inkt) */
+  --kleur-roze-tekst:  #8a5f4e;  /* tekstvariant op licht (5.0:1) */
+  --kleur-been-75:     rgba(247, 244, 238, .75);
+  --kleur-been-95:     rgba(247, 244, 238, .95);
+
+  /* typografie — twee families, drie rollen */
+  --font-serif: 'Libre Caslon Text', 'Times New Roman', serif;
+  --font-sans:  'Archivo', 'Helvetica Neue', sans-serif;
+
+  --tekst-caps-maat:    11px;
+  --tekst-caps-sp:      .22em;
+  --tekst-body-maat:    15px;
+  --tekst-body-hoogte:  1.7;
+
+  /* ritme */
+  --ruimte-sectie:      110px;
+  --ruimte-sectie-m:    80px;
+  --kader-max:          1600px;
+  --kader-pad:          40px;
+  --kader-pad-m:        22px;
+
+  /* beweging */
+  --beweging-zacht:     cubic-bezier(.22, .61, .36, 1);
+  --beweging-duur:      .85s;
+}

@@ -1,0 +1,38 @@
+{
+  "naam": "Coiffure De Zaat",
+  "slogan": "Tijd die even alleen van jou is.",
+  "adres": {
+    "straat": "Georges Van Dammeplein 1",
+    "postcode": "9140",
+    "gemeente": "Temse",
+    "land": "BE"
+  },
+  "telefoon": "+32 3 711 30 65",
+  "telefoonLink": "+3237113065",
+  "email": "info@coiffuredezaat.be",
+  "boekUrl": "https://salonkee.be/salon/coiffure-de-zaat",
+  "socials": {
+    "instagram": "https://www.instagram.com/coiffuredezaat/",
+    "facebook": "https://www.facebook.com/CoiffureJoelle"
+  },
+  "uren": [
+    { "dag": "dinsdag", "tijd": "9 – 12" },
+    { "dag": "woensdag & vrijdag", "tijd": "9 – 12 · 13 – 18" },
+    { "dag": "donderdag", "tijd": "9 – 12 · 13 – 19" },
+    { "dag": "zaterdag", "tijd": "7.30 – 16" },
+    { "dag": "zondag & maandag", "tijd": "gesloten" }
+  ],
+  "urenSchema": [
+    { "dagen": ["Tuesday"], "open": "09:00", "dicht": "12:00" },
+    { "dagen": ["Wednesday", "Friday"], "open": "09:00", "dicht": "18:00" },
+    { "dagen": ["Thursday"], "open": "09:00", "dicht": "19:00" },
+    { "dagen": ["Saturday"], "open": "07:30", "dicht": "16:00" }
+  ],
+  "feestdagNoot": "Valt een feestdag op zondag of maandag, dan zijn we dinsdag gesloten.",
+  "reviews": {
+    "score": "4,7",
+    "aantal": "90+",
+    "bron": "Google"
+  },
+  "geo": { "lat": 51.1225, "lng": 4.2086111 }
+}

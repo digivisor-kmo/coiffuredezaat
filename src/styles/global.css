@@ -1,0 +1,75 @@
+@import './tokens.css';
+
+/* ============ basis ============ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--kleur-been);
+  color: var(--kleur-inkt);
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: var(--tekst-body-maat);
+  line-height: var(--tekst-body-hoogte);
+  -webkit-font-smoothing: antialiased;
+}
+img { display: block; width: 100%; height: 100%; object-fit: cover; }
+::selection { background: var(--kleur-inkt); color: var(--kleur-been); }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--kleur-inkt); outline-offset: 3px; }
+.donker a:focus-visible, .hero a:focus-visible { outline-color: var(--kleur-been); }
+
+/* ============ typografische rollen ============ */
+.serif { font-family: var(--font-serif); font-weight: 400; line-height: 1.25; }
+.caps {
+  font-size: var(--tekst-caps-maat);
+  letter-spacing: var(--tekst-caps-sp);
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+/* ============ knoppen & links ============ */
+.knop {
+  display: inline-block; cursor: pointer; text-decoration: none; text-align: center;
+  font-size: 11px; letter-spacing: .22em; text-transform: uppercase; font-weight: 400;
+  padding: 17px 38px; border: 1px solid var(--kleur-inkt); color: var(--kleur-inkt);
+  background: transparent; transition: background .25s ease, color .25s ease;
+}
+.knop:hover { background: var(--kleur-inkt); color: var(--kleur-been); }
+.knop.licht { border-color: var(--kleur-been); color: var(--kleur-been); }
+.knop.licht:hover { background: var(--kleur-been); color: var(--kleur-inkt); }
+
+/* underline groeit op hover — geen lijn in rust */
+.tekstlink, .hero-link, .navlink {
+  color: var(--kleur-inkt); text-decoration: none; cursor: pointer; padding-bottom: 1px;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-repeat: no-repeat; background-position: left bottom; background-size: 0% 1px;
+  transition: background-size .35s var(--beweging-zacht);
+}
+.tekstlink:hover, .hero-link:hover, .navlink:hover, .navlink[aria-current="page"] { background-size: 100% 1px; }
+.hero-link { display: inline-block; font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: var(--kleur-been); padding: 17px 0 1px; }
+.navlink { font-size: 11px; letter-spacing: .18em; text-transform: uppercase; }
+
+/* ============ layout ============ */
+.kader { max-width: var(--kader-max); margin: 0 auto; padding: 0 var(--kader-pad); }
+.smal { max-width: 640px; margin: 0 auto; text-align: center; }
+section { padding: var(--ruimte-sectie) 0; }
+section.strak { padding: 0; }
+.hairline { border: none; border-top: 1px solid var(--kleur-lijn); margin: 0; }
+@media (max-width: 700px) { .kader { padding: 0 var(--kader-pad-m); } }
+@media (max-width: 960px) { section { padding: var(--ruimte-sectie-m) 0; } }
+
+.sectiekop { text-align: center; margin-bottom: 64px; }
+.sectiekop .caps { color: var(--kleur-grijs); display: block; margin-bottom: 16px; }
+.sectiekop h2, .sectiekop .h2 { font-size: clamp(24px, 2.6vw, 36px); font-weight: 400; }
+.statement { font-size: clamp(22px, 2.6vw, 32px); line-height: 1.5; }
+
+/* donkere contrapunt-sectie */
+.donker { background: var(--kleur-inkt); color: var(--kleur-been); }
+.donker .kwoot { font-size: clamp(21px, 2.4vw, 30px); line-height: 1.55; font-style: italic; }
+.donker .bron { margin-top: 26px; color: var(--kleur-been-75); }
+
+/* ============ reveal-animaties: één keer, subtiel ============ */
+.reveal { opacity: 0; transform: translateY(26px); transition: opacity var(--beweging-duur) ease, transform var(--beweging-duur) var(--beweging-zacht); will-change: opacity, transform; }
+.reveal.toon { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+}

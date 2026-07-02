@@ -1,0 +1,82 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import site from '../data/site.json';
+
+const {
+  titel,
+  beschrijving,
+  actief = '',
+  ogBeeld = '/beelden/salon/hero-home-salon.jpg',
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site).href.replace(/\/$/, '') || Astro.site;
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'HairSalon',
+  name: site.naam,
+  image: new URL(ogBeeld, Astro.site).href,
+  url: Astro.site,
+  telephone: site.telefoon,
+  email: site.email,
+  priceRange: '€€',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: site.adres.straat,
+    postalCode: site.adres.postcode,
+    addressLocality: site.adres.gemeente,
+    addressCountry: site.adres.land,
+  },
+  geo: { '@type': 'GeoCoordinates', latitude: site.geo.lat, longitude: site.geo.lng },
+  openingHoursSpecification: site.urenSchema.map((u) => ({
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: u.dagen,
+    opens: u.open,
+    closes: u.dicht,
+  })),
+  sameAs: [site.socials.instagram, site.socials.facebook],
+  hasMap: `https://www.google.com/maps?q=${encodeURIComponent(site.naam + ' ' + site.adres.gemeente)}`,
+};
+---
+<!doctype html>
+<html lang="nl-BE">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{titel}</title>
+    <meta name="description" content={beschrijving} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.naam} />
+    <meta property="og:title" content={titel} />
+    <meta property="og:description" content={beschrijving} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={new URL(ogBeeld, Astro.site).href} />
+    <meta property="og:locale" content="nl_BE" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital@0;1&family=Archivo:wght@300;400;500&display=swap" rel="stylesheet" />
+
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  </head>
+  <body>
+    <a class="skip" href="#inhoud">Naar de inhoud</a>
+    <Header actief={actief} />
+    <main id="inhoud">
+      <slot />
+    </main>
+    <Footer />
+    <script src="../scripts/beweging.js"></script>
+  </body>
+</html>
+
+<style>
+  .skip { position: absolute; left: -9999px; top: 0; background: var(--kleur-inkt); color: var(--kleur-been); padding: 12px 20px; z-index: 100; }
+  .skip:focus { left: 0; }
+</style>

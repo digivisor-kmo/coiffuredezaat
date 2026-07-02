@@ -1,0 +1,34 @@
+---
+/* 50/50 sectie: beeld tot de paginarand, inhoud met veel lucht. */
+const { beeld, alt, kicker, titel, beeldRechts = false } = Astro.props;
+---
+<section class="strak">
+  <div class={`split ${beeldRechts ? 'omgekeerd' : ''}`}>
+    <div class="beeld" data-parallax="beeld" data-reveal>
+      <img src={beeld} alt={alt} loading="lazy" />
+    </div>
+    <div class="inhoud" data-reveal="120">
+      {kicker && <span class="caps kicker">{kicker}</span>}
+      <h2 class="serif">{titel}</h2>
+      <div class="tekst"><slot /></div>
+      <div class="actie"><slot name="actie" /></div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .split { display: grid; grid-template-columns: 1fr 1fr; align-items: center; max-width: var(--kader-max); margin: 0 auto; }
+  .split.omgekeerd .beeld { order: 2; }
+  .beeld { height: 640px; overflow: hidden; }
+  .beeld :global(img) { transform: scale(1.12); will-change: transform; }
+  .inhoud { padding: 80px 9vw; }
+  .kicker { color: var(--kleur-grijs); display: block; margin-bottom: 18px; }
+  h2 { font-size: clamp(24px, 2.4vw, 34px); margin-bottom: 22px; }
+  .tekst { color: var(--kleur-grijs); max-width: 420px; }
+  .actie { margin-top: 36px; }
+  @media (max-width: 960px) {
+    .split { grid-template-columns: 1fr; }
+    .beeld, .split.omgekeerd .beeld { order: -1; height: 420px; }
+    .inhoud { padding: 56px var(--kader-pad-m); }
+  }
+</style>

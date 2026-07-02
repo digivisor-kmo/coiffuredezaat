@@ -1,0 +1,10 @@
+[
+  { "naam": "Joëlle",  "rol": "Bruiden & artistieke leiding",  "foto": "/beelden/team/joelle.jpg",  "boekbaar": false, "link": "/bruiden", "linkTekst": "Bruiden bij Joëlle", "homepage": true },
+  { "naam": "Melanie", "rol": "Top Colorist",                   "foto": "/beelden/team/melanie.jpg", "boekbaar": true, "homepage": true },
+  { "naam": "Evi",     "rol": "Master Stylist & Barber",        "foto": "/beelden/team/evi.png",     "boekbaar": true, "homepage": true },
+  { "naam": "Elke",    "rol": "Top Stylist & Barber",           "foto": "/beelden/team/elke.jpg",    "boekbaar": true },
+  { "naam": "Hasan",   "rol": "Top Stylist & Barber",           "foto": "/beelden/team/hasan.jpg",   "boekbaar": true },
+  { "naam": "Lieke",   "rol": "Top Stylist · lokken & kleur",   "foto": "/beelden/team/lieke.jpg",   "boekbaar": true, "homepage": true },
+  { "naam": "Evelina", "rol": "Top Stylist · lokken & snit",    "foto": "/beelden/team/evelina.jpg", "boekbaar": true },
+  { "naam": "Tiana",   "rol": "Make-Up Artist",                 "foto": "/beelden/team/tiana.jpg",   "boekbaar": false, "link": "/bruiden", "linkTekst": "Make-up bij bruiden" }
+]

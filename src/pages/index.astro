@@ -1,0 +1,105 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import Split from '../components/Split.astro';
+import TeamGrid from '../components/TeamGrid.astro';
+import site from '../data/site.json';
+import team from '../data/team.json';
+
+const homepageTeam = team.filter((l) => l.homepage);
+---
+<Base
+  titel="Kapper Temse | Coiffure De Zaat — duurzaam kapsalon aan de Schelde"
+  beschrijving="Kapsalon in Temse met acht specialisten, ammoniakvrije kleuringen en balayage op maat. 4,7★ op Google. Boek online je afspraak bij Coiffure De Zaat."
+  actief="/"
+>
+  <Hero
+    beeld="/beelden/salon/hero-home-salon.jpg"
+    alt="Het salon van Coiffure De Zaat in Temse"
+    kicker={`Kapsalon · Georges Van Dammeplein, ${site.adres.gemeente}`}
+    titel={site.slogan}
+  >
+    <a class="knop licht" href={site.boekUrl} target="_blank" rel="noopener">Boek een afspraak</a>
+    <a class="hero-link" href="/diensten-prijzen">Diensten &amp; prijzen&ensp;→</a>
+  </Hero>
+
+  <section>
+    <div class="kader"><div class="smal" data-reveal>
+      <p class="serif statement">
+        Acht specialisten, ammoniakvrije kleur en de rust om het goed te doen.
+        Al meer dan twintig jaar het adres voor haar in {site.adres.gemeente} —
+        vroeger als Coiffure Joëlle, vandaag als De Zaat.
+      </p>
+      <p class="caps subscore">{site.reviews.score} op {site.reviews.bron} &middot; {site.reviews.aantal} reviews</p>
+    </div></div>
+  </section>
+
+  <Split
+    beeld="/beelden/salon/dames-haar.png"
+    alt="Kleurwerk van Coiffure De Zaat"
+    kicker="Kleur & balayage"
+    titel="Kleur is ons vak."
+  >
+    <p>
+      Van een subtiele glans tot een volledige transformatie: onze colorists werken
+      uitsluitend ammoniakvrij, met La Biosthétique en Aveda. Eerlijk advies over
+      wat jouw haar aankan, vooraf.
+    </p>
+    <a slot="actie" class="knop" href="/kleuren-balayage">Ontdek ons kleurwerk</a>
+  </Split>
+
+  <Split
+    beeld="/beelden/salon/heren-manscorner.jpg"
+    alt="The Manscorner, de barbierhoek van De Zaat"
+    kicker="The Manscorner"
+    titel="Heren & barbier."
+    beeldRechts
+  >
+    <p>
+      Klassieke snit, old-school scheerbeurt of baardtrim — in een hoek van het salon
+      die helemaal van de heren is. Snit vanaf € 32, op afspraak.
+    </p>
+    <a slot="actie" class="knop" href="/diensten-prijzen#heren">Bekijk het menu</a>
+  </Split>
+
+  <section class="donker">
+    <div class="kader"><div class="smal" data-reveal>
+      <p class="kwoot serif">“Dankuwel om mij terug goed als vrouw te laten voelen.”</p>
+      <p class="caps bron">Maria — juni 2026, na haar kleurbehandeling</p>
+    </div></div>
+  </section>
+
+  <section>
+    <div class="kader">
+      <div class="sectiekop" data-reveal>
+        <span class="caps">Het team</span>
+        <h2 class="serif">Boek bij wie bij jou past.</h2>
+      </div>
+      <TeamGrid leden={homepageTeam} />
+      <div class="centreer" data-reveal><a class="knop" href="/team">Het volledige team</a></div>
+    </div>
+  </section>
+
+  <hr class="hairline" />
+
+  <section>
+    <div class="kader"><div class="smal" data-reveal>
+      <span class="caps bezoek-kicker">Bezoek</span>
+      <p class="serif statement klein">
+        {site.adres.straat}, {site.adres.gemeente}<br />
+        di 9–12 &middot; wo &amp; vr 9–18 &middot; do 9–19 &middot; za 7.30–16
+      </p>
+      <div class="centreer krap"><a class="knop" href={site.boekUrl} target="_blank" rel="noopener">Boek een afspraak</a></div>
+      <p class="belnoot">of bel <a class="tekstlink" href={`tel:${site.telefoonLink}`}>{site.telefoon}</a></p>
+    </div></div>
+  </section>
+</Base>
+
+<style>
+  .subscore { color: var(--kleur-grijs); margin-top: 34px; }
+  .centreer { text-align: center; margin-top: 58px; }
+  .centreer.krap { margin-top: 38px; }
+  .bezoek-kicker { color: var(--kleur-grijs); display: block; margin-bottom: 16px; }
+  .statement.klein { font-size: clamp(19px, 2vw, 24px); }
+  .belnoot { margin-top: 20px; font-size: 13px; color: var(--kleur-grijs); }
+</style>

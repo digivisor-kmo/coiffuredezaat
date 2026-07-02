@@ -1,0 +1,28 @@
+---
+import site from '../data/site.json';
+const { leden } = Astro.props;
+---
+<div class="rooster">
+  {leden.map((lid, i) => (
+    <div class="lid" data-reveal={String((i % 4) * 90)}>
+      <div class="foto"><img src={lid.foto} alt={`${lid.naam} — ${lid.rol}`} loading="lazy" /></div>
+      <h3 class="serif">{lid.naam}</h3>
+      <div class="rol">{lid.rol}</div>
+      {lid.boekbaar
+        ? <a class="tekstlink" href={site.boekUrl} target="_blank" rel="noopener">Boek bij {lid.naam}</a>
+        : <a class="tekstlink" href={lid.link}>{lid.linkTekst}</a>}
+    </div>
+  ))}
+</div>
+
+<style>
+  .rooster { display: grid; grid-template-columns: repeat(4, 1fr); gap: 34px; }
+  .foto { height: 340px; overflow: hidden; background: #e7e2d9; }
+  .foto :global(img) { filter: grayscale(1); transition: filter .5s ease, transform .8s ease; }
+  .lid:hover .foto :global(img) { filter: grayscale(0); transform: scale(1.02); }
+  h3 { font-weight: 400; font-size: 17px; margin: 18px 0 2px; }
+  .rol { font-size: 12px; color: var(--kleur-grijs); letter-spacing: .06em; }
+  .lid :global(a) { display: inline-block; margin-top: 10px; font-size: 11px; letter-spacing: .18em; text-transform: uppercase; }
+  @media (max-width: 960px) { .rooster { grid-template-columns: repeat(2, 1fr); gap: 22px; } .foto { height: 240px; } }
+  @media (prefers-reduced-motion: reduce) { .foto :global(img) { transition: none; } }
+</style>

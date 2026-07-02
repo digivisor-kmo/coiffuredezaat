@@ -1,0 +1,47 @@
+{
+  "noot": "Wassen, verzorging en afwerking zijn altijd inbegrepen. Lang of dik haar kan een supplement vragen — dat hoor je vooraf, nooit achteraf.",
+  "annulatie": "Verzetten of annuleren kan kosteloos tot 48 uur vooraf.",
+  "categorieen": [
+    {
+      "titel": "Knippen & styling",
+      "items": [
+        { "naam": "Snit & brushing, all-in", "detail": "kort, halflang of lang", "prijs": "vanaf € 63" },
+        { "naam": "Brushing", "prijs": "vanaf € 10" },
+        { "naam": "Kindersnit, tot 12 jaar", "prijs": "€ 24" },
+        { "naam": "Opsteken, incl. lak", "prijs": "€ 43" }
+      ]
+    },
+    {
+      "titel": "Kleur & balayage",
+      "items": [
+        { "naam": "Kleuring & brushing", "detail": "uitgroei of volledig · ± 1u30", "prijs": "vanaf € 89" },
+        { "naam": "Balayage & brushing", "detail": "± 2u30", "prijs": "vanaf € 94" },
+        { "naam": "Kleur, snit & brushing", "prijs": "vanaf € 114,50" },
+        { "naam": "Ombré of lokken", "prijs": "vanaf € 112,50" },
+        { "naam": "Adviesgesprek", "detail": "twijfel over kleur, techniek of haalbaarheid", "prijs": "gratis" }
+      ]
+    },
+    {
+      "titel": "Verzorging",
+      "items": [
+        { "naam": "Botanical Repair–behandeling", "detail": "toe te voegen aan elke afspraak", "prijs": "vanaf € 23,50" },
+        { "naam": "Scalp Check", "prijs": "€ 15" }
+      ]
+    },
+    {
+      "titel": "Extensions",
+      "items": [
+        { "naam": "Adviesgesprek", "prijs": "gratis" },
+        { "naam": "Herplaatsen", "prijs": "vanaf € 50" }
+      ]
+    },
+    {
+      "titel": "Heren · The Manscorner",
+      "items": [
+        { "naam": "Snit", "prijs": "€ 32" },
+        { "naam": "Snit barbier", "prijs": "€ 38" },
+        { "naam": "Baard trimmen", "prijs": "vanaf € 15,50" }
+      ]
+    }
+  ]
+}

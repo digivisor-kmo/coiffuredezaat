@@ -1,0 +1,4 @@
+# TIJDELIJK: site nog in opbouw, niet indexeren.
+# Bij lancering vervangen door de definitieve robots.txt (zie lanceerchecklist).
+User-agent: *
+Disallow: /
