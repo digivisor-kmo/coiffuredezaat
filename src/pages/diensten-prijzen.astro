@@ -62,9 +62,9 @@ const per = Object.fromEntries(prijzen.categorieen.map((c) => [c.titel, c]));
 
 <style>
   .lijst { padding-top: 0; }
-  .kolommen { display: grid; grid-template-columns: 1fr 1fr; gap: 8vw; align-items: start; max-width: 1200px; }
+  .kolommen { display: grid; grid-template-columns: 1fr 1fr; gap: 8vw; align-items: start; max-width: 1200px; margin: 0 auto; }
   .blokvoet { margin-top: 18px; font-size: 13px; color: var(--kleur-grijs); }
-  .weetjes { max-width: 720px; margin-top: 24px; }
+  .weetjes { max-width: 720px; margin: 24px auto 0; }
   .weetjes h2 { color: var(--kleur-grijs); margin-bottom: 18px; }
   details { border-bottom: 1px solid var(--kleur-lijn); }
   details:first-of-type { border-top: 1px solid var(--kleur-lijn); }

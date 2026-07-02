@@ -60,6 +60,10 @@ const kleurPrijzen = prijzen.categorieen.find((c) => c.titel === 'Kleur & balaya
 
   <section class="technieken">
     <div class="kader">
+      <div class="sectiekop" data-reveal>
+        <span class="caps">Technieken & prijzen</span>
+        <h2 class="serif">Wat kost jouw kleur?</h2>
+      </div>
       <div class="tsmal">
         <PrijsLijst categorie={kleurPrijzen} />
         <p class="tvoet" data-reveal>Alle behandelingen inclusief brushing. Lang of dik haar kan een supplement vragen — dat hoor je vooraf.</p>
@@ -107,8 +111,10 @@ const kleurPrijzen = prijzen.categorieen.find((c) => c.titel === 'Kleur & balaya
   .ptekst p { color: var(--kleur-grijs); max-width: 420px; }
   .pbeeld { height: 460px; overflow: hidden; }
   .pbeeld img { transform: scale(1.12); will-change: transform; }
-  .technieken .tsmal { max-width: 720px; }
-  .tvoet { font-size: 13px; color: var(--kleur-grijs); margin-top: -34px; }
+  .technieken .tsmal { max-width: 720px; margin: 0 auto; }
+  .tsmal :global(.prijsblok) { margin-bottom: 28px; }
+  .tsmal :global(.prijsblok .cat) { display: none; } /* sectiekop vervangt de categorietitel */
+  .tvoet { font-size: 13px; color: var(--kleur-grijs); text-align: center; }
   .dtekst { color: var(--kleur-been-75); margin-top: 22px; max-width: 520px; margin-left: auto; margin-right: auto; }
   .dactie { margin-top: 32px; }
   .colorists :global(.rooster) { grid-template-columns: repeat(3, 1fr); max-width: 1000px; margin: 0 auto; }

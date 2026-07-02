@@ -48,11 +48,13 @@ import team from '../data/team.json';
 
 <style>
   .leden { padding-top: 0; }
-  .lid { display: grid; grid-template-columns: 380px 1fr; gap: 6vw; align-items: center; padding: 44px 0; border-bottom: 1px solid var(--kleur-lijn); max-width: 1000px; }
+  .lid { display: grid; grid-template-columns: 440px 1fr; gap: 7vw; align-items: center; padding: 56px 0; border-bottom: 1px solid var(--kleur-lijn); max-width: 1120px; margin: 0 auto; }
   .lid:last-child { border-bottom: none; }
-  .lid.omgekeerd { grid-template-columns: 1fr 380px; }
+  .lid.omgekeerd { grid-template-columns: 1fr 440px; }
   .lid.omgekeerd .foto { order: 2; }
-  .foto { height: 400px; overflow: hidden; background: #e7e2d9; }
+  .lid.omgekeerd .info { text-align: right; }
+  .lid.omgekeerd .info p { margin-left: auto; }
+  .foto { height: 460px; overflow: hidden; background: #e7e2d9; }
   .foto img { filter: grayscale(1); transition: filter .5s ease, transform .8s ease; }
   .lid:hover .foto img { filter: grayscale(0); transform: scale(1.02); }
   .rol { color: var(--kleur-roze-tekst); display: block; margin-bottom: 10px; }
@@ -60,9 +62,11 @@ import team from '../data/team.json';
   .info p { color: var(--kleur-grijs); max-width: 460px; margin-bottom: 26px; }
   .knop.klein { padding: 14px 30px; }
   @media (max-width: 860px) {
-    .lid, .lid.omgekeerd { grid-template-columns: 1fr; gap: 24px; }
+    .lid, .lid.omgekeerd { grid-template-columns: 1fr; gap: 24px; padding: 40px 0; }
     .lid.omgekeerd .foto { order: 0; }
-    .foto { height: 320px; }
+    .lid.omgekeerd .info { text-align: left; }
+    .lid.omgekeerd .info p { margin-left: 0; }
+    .foto { height: 340px; }
   }
   @media (prefers-reduced-motion: reduce) { .foto img { transition: none; } }
 </style>
