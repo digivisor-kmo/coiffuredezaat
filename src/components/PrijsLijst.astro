@@ -1,0 +1,26 @@
+---
+/* Eén prijscategorie als typografisch menu: hairlines, prijs in serif rechts. */
+const { categorie, id } = Astro.props;
+---
+<div class="prijsblok" id={id} data-reveal>
+  <h2 class="caps cat">{categorie.titel}</h2>
+  {categorie.items.map((item) => (
+    <div class="rij">
+      <span class="wat">
+        {item.naam}
+        {item.detail && <small>{item.detail}</small>}
+      </span>
+      <span class="prijs serif">{item.prijs}</span>
+    </div>
+  ))}
+  <slot />
+</div>
+
+<style>
+  .prijsblok { margin-bottom: 64px; }
+  .cat { color: var(--kleur-grijs); margin-bottom: 10px; }
+  .rij { display: flex; justify-content: space-between; align-items: baseline; gap: 30px; padding: 19px 0; border-bottom: 1px solid var(--kleur-lijn); }
+  .wat { font-weight: 300; }
+  .wat small { display: block; font-size: 12px; color: var(--kleur-grijs); margin-top: 3px; }
+  .prijs { font-size: 16px; white-space: nowrap; }
+</style>

@@ -1,0 +1,43 @@
+---
+import Base from '../layouts/Base.astro';
+import PaginaIntro from '../components/PaginaIntro.astro';
+import site from '../data/site.json';
+---
+<Base
+  titel="Privacyverklaring | Coiffure De Zaat"
+  beschrijving="Hoe Coiffure De Zaat in Temse omgaat met jouw gegevens: wat we bewaren, waarom, en welke rechten je hebt."
+  actief=""
+>
+  <PaginaIntro
+    kicker="Privacy"
+    titel="Jouw gegevens, kort en duidelijk."
+    lead="Geen kleine lettertjes: dit is wat we van je bewaren en waarom."
+  />
+
+  <section class="inhoud">
+    <div class="kader"><div class="tekst" data-reveal>
+      <h2 class="serif">Welke gegevens we verwerken</h2>
+      <p>Boek je online, dan verlopen je afspraakgegevens (naam, contactgegevens, gekozen behandeling) via Salonkee, ons boekingssysteem. Salonkee treedt daarbij op als verwerker; hun privacybeleid vind je op <a class="tekstlink" href="https://salonkee.be/data_privacy_policy" target="_blank" rel="noopener">salonkee.be</a>. Mail of bel je ons, dan gebruiken we je gegevens enkel om je vraag te beantwoorden.</p>
+
+      <h2 class="serif">Wat we niet doen</h2>
+      <p>We verkopen geen gegevens, sturen geen ongevraagde reclame en plaatsen op deze website geen tracking- of marketingcookies. De site gebruikt alleen technisch noodzakelijke functionaliteit.</p>
+
+      <h2 class="serif">Jouw rechten</h2>
+      <p>Je kan je gegevens altijd opvragen, laten aanpassen of laten verwijderen. Eén mailtje naar <a class="tekstlink" href={`mailto:${site.email}`}>{site.email}</a> volstaat. Klachten kunnen bij de Gegevensbeschermingsautoriteit (gegevensbeschermingsautoriteit.be).</p>
+
+      <h2 class="serif">Verantwoordelijke</h2>
+      <p>{site.naam}, {site.adres.straat}, {site.adres.postcode} {site.adres.gemeente} — {site.email} — {site.telefoon}.</p>
+
+      <p class="noot">Laatste update: juli 2026. <em>[Concept — na te kijken door het salon vóór lancering, o.a. ondernemingsnummer toevoegen.]</em></p>
+    </div></div>
+  </section>
+</Base>
+
+<style>
+  .inhoud { padding-top: 0; }
+  .tekst { max-width: 680px; }
+  .tekst h2 { font-size: 21px; margin: 40px 0 12px; }
+  .tekst h2:first-child { margin-top: 0; }
+  .tekst p { color: var(--kleur-grijs); }
+  .noot { font-size: 13px; margin-top: 48px; }
+</style>

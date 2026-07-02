@@ -1,0 +1,24 @@
+---
+import site from '../data/site.json';
+/* Afsluitend boekblok: elke pagina eindigt op de conversie. */
+const { titel = 'Tijd voor jou?', tekst = null } = Astro.props;
+---
+<section class="boekblok">
+  <div class="kader"><div class="smal" data-reveal>
+    <span class="accentlijn" aria-hidden="true"></span>
+    <h2 class="serif bb-titel">{titel}</h2>
+    {tekst && <p class="bb-tekst">{tekst}</p>}
+    <div class="bb-acties">
+      <a class="knop" href={site.boekUrl} target="_blank" rel="noopener">Boek een afspraak</a>
+    </div>
+    <p class="bb-bel">of bel <a class="tekstlink" href={`tel:${site.telefoonLink}`}>{site.telefoon}</a></p>
+  </div></div>
+</section>
+
+<style>
+  .boekblok { background: var(--kleur-klei); }
+  .bb-titel { font-size: clamp(26px, 3vw, 40px); }
+  .bb-tekst { color: var(--kleur-grijs); margin-top: 16px; max-width: 440px; margin-left: auto; margin-right: auto; }
+  .bb-acties { margin-top: 32px; }
+  .bb-bel { margin-top: 18px; font-size: 13px; color: var(--kleur-grijs); }
+</style>

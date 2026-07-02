@@ -1,0 +1,77 @@
+---
+import Base from '../layouts/Base.astro';
+import PaginaIntro from '../components/PaginaIntro.astro';
+import PrijsLijst from '../components/PrijsLijst.astro';
+import BoekBlok from '../components/BoekBlok.astro';
+import site from '../data/site.json';
+import prijzen from '../data/prijzen.json';
+
+const per = Object.fromEntries(prijzen.categorieen.map((c) => [c.titel, c]));
+---
+<Base
+  titel="Diensten & prijzen | Coiffure De Zaat Temse"
+  beschrijving="Alle diensten en prijzen van Coiffure De Zaat in Temse: knippen all-in vanaf €63, kleuring vanaf €89, balayage vanaf €94, herensnit €32. Transparant en all-in."
+  actief="/diensten-prijzen"
+>
+  <PaginaIntro
+    kicker="Alle prijzen all-in"
+    titel="Diensten & prijzen"
+    lead={prijzen.noot}
+  />
+
+  <section class="lijst">
+    <div class="kader">
+      <div class="kolommen">
+        <div>
+          <PrijsLijst categorie={per['Knippen & styling']} />
+          <PrijsLijst categorie={per['Verzorging']}>
+            <p class="blokvoet">Voeg toe aan je afspraak voor een compleet me-time-moment.</p>
+          </PrijsLijst>
+          <PrijsLijst categorie={per['Extensions']} />
+        </div>
+        <div>
+          <PrijsLijst categorie={per['Kleur & balayage']}>
+            <p class="blokvoet">Twijfel je wat jouw haar nodig heeft? <a class="tekstlink" href="/kleuren-balayage">Lees meer over ons kleurwerk</a> — of start met het gratis adviesgesprek.</p>
+          </PrijsLijst>
+          <PrijsLijst categorie={per['Heren · The Manscorner']} id="heren">
+            <p class="blokvoet">Old-school scheren en baardverzorging in onze aparte herenhoek.</p>
+          </PrijsLijst>
+        </div>
+      </div>
+
+      <div class="weetjes" data-reveal>
+        <h2 class="caps">Goed om te weten</h2>
+        <details>
+          <summary>Wat betekent kort, halflang of lang?</summary>
+          <p>Kort: tot net onder het oor. Halflang: tot aan de schouders. Lang: voorbij de schouders. Zo weet je vooraf in welke prijsklasse je valt.</p>
+        </details>
+        <details>
+          <summary>Wanneer geldt een supplement?</summary>
+          <p>Bij extra lang of dik haar kan meer product of tijd nodig zijn. Dat bespreken we altijd vooraf — nooit een verrassing achteraf.</p>
+        </details>
+        <details>
+          <summary>Verzetten of annuleren?</summary>
+          <p>{prijzen.annulatie} Dat kan online via je Salonkee-account of de app, of telefonisch via {site.telefoon}.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <BoekBlok tekst="Je ziet meteen de eerste vrije plek bij jouw stylist." />
+</Base>
+
+<style>
+  .lijst { padding-top: 0; }
+  .kolommen { display: grid; grid-template-columns: 1fr 1fr; gap: 8vw; align-items: start; max-width: 1200px; }
+  .blokvoet { margin-top: 18px; font-size: 13px; color: var(--kleur-grijs); }
+  .weetjes { max-width: 720px; margin-top: 24px; }
+  .weetjes h2 { color: var(--kleur-grijs); margin-bottom: 18px; }
+  details { border-bottom: 1px solid var(--kleur-lijn); }
+  details:first-of-type { border-top: 1px solid var(--kleur-lijn); }
+  summary { cursor: pointer; padding: 19px 0; font-weight: 400; list-style: none; position: relative; padding-right: 34px; }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: "+"; position: absolute; right: 4px; top: 50%; transform: translateY(-50%); font-family: var(--font-serif); font-size: 19px; color: var(--kleur-roze-tekst); transition: transform .3s var(--beweging-zacht); }
+  details[open] summary::after { transform: translateY(-50%) rotate(45deg); }
+  details p { color: var(--kleur-grijs); padding: 0 0 20px; max-width: 560px; }
+  @media (max-width: 960px) { .kolommen { grid-template-columns: 1fr; gap: 0; } }
+</style>

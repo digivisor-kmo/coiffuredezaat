@@ -1,0 +1,86 @@
+---
+import Base from '../layouts/Base.astro';
+import PaginaIntro from '../components/PaginaIntro.astro';
+import Split from '../components/Split.astro';
+import BoekBlok from '../components/BoekBlok.astro';
+import site from '../data/site.json';
+---
+<Base
+  titel="Over De Zaat | van Coiffure Joëlle naar Coiffure De Zaat"
+  beschrijving="Het verhaal van Coiffure De Zaat in Temse: twintig jaar vakmanschap, duurzaam kappen met La Biosthétique, Aveda en Screen, en een team dat blijft bijleren."
+  actief="/over"
+>
+  <PaginaIntro
+    kicker="Over De Zaat"
+    titel="Zelfde stoelen, zelfde handen, nieuwe naam."
+    lead="Twintig jaar lang kende Temse ons als Coiffure Joëlle. Vandaag heten we De Zaat — naar de plek aan de Schelde waar het salon thuis is. Alles wat je kende, bleef: het team, het vakmanschap en de tijd die we voor je nemen."
+  />
+
+  <Split
+    beeld="/beelden/salon/team-salon.jpg"
+    alt="Het team van De Zaat in het salon"
+    kicker="Het huis"
+    titel="Een salon aan de Schelde."
+  >
+    <p>
+      Op het Georges Van Dammeplein, in de wijk De Zaat — de oude scheepswerf van
+      Temse. Een plek met karakter, en sinds jaar en dag het adres waar je even
+      tijd voor jezelf neemt. Gratis parkeren voor de deur, de Temsebrug om de hoek.
+    </p>
+    <a slot="actie" class="knop" href="/team">Maak kennis met het team</a>
+  </Split>
+
+  <section class="duurzaam">
+    <div class="kader"><div class="smal" data-reveal>
+      <span class="accentlijn" aria-hidden="true"></span>
+      <p class="serif statement">
+        Duurzaam is bij ons geen etiket. We kleuren zonder ammoniak, werken met
+        plantaardige formules en kiezen elk product bewust — ook voor een
+        gevoelige hoofdhuid.
+      </p>
+    </div></div>
+  </section>
+
+  <section class="merken strak">
+    <div class="kader">
+      <div class="mgrid">
+        <div class="merk" data-reveal>
+          <h2 class="serif">La Biosthétique</h2>
+          <p>Parijse haute coiffure: verzorging en kleur op maat van jouw haar en hoofdhuid, ammoniakvrij.</p>
+        </div>
+        <div class="merk" data-reveal="100">
+          <h2 class="serif">Aveda</h2>
+          <p>Tot 100% vegan en plantaardig, van kleur tot styling. Botanical Repair herstelt het haar van binnenuit.</p>
+        </div>
+        <div class="merk" data-reveal="200">
+          <h2 class="serif">Screen</h2>
+          <p>Italiaans kleurvakmanschap, de vaste waarde in onze wedstrijd- en showlooks.</p>
+        </div>
+      </div>
+      <p class="thuis" data-reveal>
+        Producten voor thuis? Alles uit het salon kan je bij ons afhalen of bestellen via
+        <a class="tekstlink" href="https://www.labiosthetique.nl" target="_blank" rel="noopener">de officiële La Biosthétique-webshop</a>
+        — kies De Zaat als jouw salon, dan steun je ons rechtstreeks.
+      </p>
+    </div>
+  </section>
+
+  <section class="donker">
+    <div class="kader"><div class="smal" data-reveal>
+      <p class="kwoot serif">Elk jaar opnieuw op de schoolbanken.</p>
+      <p class="bron caps">Parijs &middot; Pescara &middot; Bulgarije &middot; Schorem Rotterdam &middot; Maastricht</p>
+    </div></div>
+  </section>
+
+  <BoekBlok titel="Kom het zelf ervaren." tekst="Eén afspraak en je begrijpt waarom klanten hier twintig jaar blijven." />
+</Base>
+
+<style>
+  .duurzaam { background: var(--kleur-klei); }
+  .merken { padding: var(--ruimte-sectie) 0; }
+  .mgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5vw; max-width: 1100px; }
+  .merk h2 { font-size: 22px; margin-bottom: 12px; }
+  .merk p { color: var(--kleur-grijs); font-size: 14px; }
+  .thuis { margin-top: 64px; padding-top: 34px; border-top: 1px solid var(--kleur-lijn); color: var(--kleur-grijs); max-width: 640px; font-size: 14px; }
+  @media (max-width: 860px) { .mgrid { grid-template-columns: 1fr; gap: 34px; } }
+</style>

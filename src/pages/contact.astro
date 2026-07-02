@@ -1,0 +1,87 @@
+---
+import Base from '../layouts/Base.astro';
+import PaginaIntro from '../components/PaginaIntro.astro';
+import site from '../data/site.json';
+
+const mapsUrl = `https://www.google.com/maps/search/${encodeURIComponent(site.naam + ' ' + site.adres.gemeente)}`;
+---
+<Base
+  titel="Contact & online boeken | Coiffure De Zaat Temse"
+  beschrijving="Boek online in drie stappen bij Coiffure De Zaat in Temse, of bel 03 711 30 65. Openingsuren, adres en parkeerinfo — Georges Van Dammeplein 1."
+  actief="/contact"
+>
+  <PaginaIntro
+    kicker="Contact & boeken"
+    titel="Boek online, in drie stappen."
+  />
+
+  <section class="boeken">
+    <div class="kader bgrid">
+      <div data-reveal>
+        <div class="stap"><span class="cijfer serif">I</span><p><strong>Maak één keer een account</strong>Via Google, Facebook, Apple of e-mail.</p></div>
+        <div class="stap"><span class="cijfer serif">II</span><p><strong>Kies je behandeling en je stylist</strong>Je ziet meteen de eerste vrije plek.</p></div>
+        <div class="stap"><span class="cijfer serif">III</span><p><strong>Klaar</strong>Bevestiging per mail. Verzetten of annuleren kan kosteloos tot 48 uur vooraf, ook via de Salonkee-app.</p></div>
+        <div class="bactie">
+          <a class="knop" href={site.boekUrl} target="_blank" rel="noopener">Boek een afspraak</a>
+          <a class="tekstlink" href={`tel:${site.telefoonLink}`}>of bel {site.telefoon}</a>
+        </div>
+      </div>
+      <div class="praktisch" data-reveal="150">
+        <h2 class="caps ptitel">Openingsuren</h2>
+        {site.uren.map((u) => (
+          <div class="uur-rij"><span class="dag">{u.dag}</span><span class="tijd serif">{u.tijd}</span></div>
+        ))}
+        <p class="stil">{site.feestdagNoot}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="waar">
+    <div class="kader wgrid">
+      <div data-reveal>
+        <span class="accentlijn linksop" aria-hidden="true"></span>
+        <span class="caps wkicker">Waar</span>
+        <h2 class="serif wtitel">Midden op het plein,<br />aan de Schelde.</h2>
+        <p class="wadres">
+          {site.adres.straat}, {site.adres.postcode} {site.adres.gemeente}<br />
+          <span class="stil">Gratis parkeren op het plein · vlak bij de Temsebrug, ook vanuit Bornem zo bij ons.</span>
+        </p>
+        <div class="wacties">
+          <a class="knop" href={mapsUrl} target="_blank" rel="noopener">Open in Google Maps</a>
+        </div>
+      </div>
+      <div class="wcontact" data-reveal="150">
+        <h2 class="caps ptitel">Vraag of opmerking?</h2>
+        <p class="stil">Mail of bel ons — we antwoorden zodra we van achter de stoel weg kunnen.</p>
+        <a class="groot serif" href={`mailto:${site.email}`}>{site.email}</a>
+        <a class="groot serif" href={`tel:${site.telefoonLink}`}>{site.telefoon}</a>
+        <p class="stil">Voor bruiden en events: vermeld je datum, dan antwoorden we met een offerte op maat.</p>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .boeken { padding-top: 0; }
+  .bgrid, .wgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 8vw; align-items: start; max-width: 1200px; }
+  .stap { display: flex; gap: 34px; padding: 24px 0; border-bottom: 1px solid var(--kleur-lijn); }
+  .stap:first-child { padding-top: 0; }
+  .cijfer { font-style: italic; font-size: 22px; color: var(--kleur-roze-tekst); min-width: 34px; }
+  .stap p { color: var(--kleur-grijs); }
+  .stap strong { display: block; color: var(--kleur-inkt); font-weight: 400; margin-bottom: 3px; }
+  .bactie { margin-top: 40px; display: flex; gap: 26px; align-items: center; flex-wrap: wrap; }
+  .ptitel { color: var(--kleur-grijs); margin-bottom: 14px; }
+  .uur-rij { display: flex; justify-content: space-between; align-items: baseline; gap: 24px; padding: 17px 0; border-bottom: 1px solid var(--kleur-lijn); }
+  .uur-rij:first-of-type { border-top: 1px solid var(--kleur-lijn); }
+  .dag { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; }
+  .tijd { font-size: 17px; }
+  .stil { font-size: 13px; color: var(--kleur-grijs); margin-top: 14px; }
+  .waar { background: var(--kleur-klei); }
+  .wkicker { color: var(--kleur-grijs); display: block; margin-bottom: 16px; }
+  .wtitel { font-size: clamp(26px, 3vw, 40px); margin-bottom: 22px; }
+  .wadres { color: var(--kleur-grijs); }
+  .wacties { margin-top: 30px; }
+  .wcontact .groot { display: block; font-size: clamp(19px, 2vw, 24px); color: var(--kleur-inkt); text-decoration: none; padding: 12px 0; border-bottom: 1px solid rgba(25,24,23,.14); }
+  .wcontact .groot:hover { color: var(--kleur-roze-tekst); }
+  @media (max-width: 960px) { .bgrid, .wgrid { grid-template-columns: 1fr; gap: 44px; } }
+</style>

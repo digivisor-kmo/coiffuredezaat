@@ -1,10 +1,42 @@
 [
-  { "naam": "Joëlle",  "rol": "Bruiden & artistieke leiding",  "foto": "/beelden/team/joelle.jpg",  "boekbaar": false, "link": "/bruiden", "linkTekst": "Bruiden bij Joëlle", "homepage": true },
-  { "naam": "Melanie", "rol": "Top Colorist",                   "foto": "/beelden/team/melanie.jpg", "boekbaar": true, "homepage": true },
-  { "naam": "Evi",     "rol": "Master Stylist & Barber",        "foto": "/beelden/team/evi.png",     "boekbaar": true, "homepage": true },
-  { "naam": "Elke",    "rol": "Top Stylist & Barber",           "foto": "/beelden/team/elke.jpg",    "boekbaar": true },
-  { "naam": "Hasan",   "rol": "Top Stylist & Barber",           "foto": "/beelden/team/hasan.jpg",   "boekbaar": true },
-  { "naam": "Lieke",   "rol": "Top Stylist · lokken & kleur",   "foto": "/beelden/team/lieke.jpg",   "boekbaar": true, "homepage": true },
-  { "naam": "Evelina", "rol": "Top Stylist · lokken & snit",    "foto": "/beelden/team/evelina.jpg", "boekbaar": true },
-  { "naam": "Tiana",   "rol": "Make-Up Artist",                 "foto": "/beelden/team/tiana.jpg",   "boekbaar": false, "link": "/bruiden", "linkTekst": "Make-up bij bruiden" }
+  {
+    "naam": "Joëlle", "rol": "Bruiden & artistieke leiding", "foto": "/beelden/team/joelle.jpg",
+    "bio": "Dertig jaar in het vak, internationaal bekroond in bruidskapsels en opsteken. Leidt het salon en neemt elke bruid persoonlijk voor haar rekening.",
+    "boekbaar": false, "link": "/bruiden", "linkTekst": "Bruiden bij Joëlle", "homepage": true
+  },
+  {
+    "naam": "Melanie", "rol": "Top Colorist", "foto": "/beelden/team/melanie.jpg",
+    "bio": "Kleur op wedstrijdniveau: van zachte glans tot volledige transformatie. Won de Belgium Hairdressers Award als youngster en kleurt sindsdien elke dag beter.",
+    "boekbaar": true, "homepage": true
+  },
+  {
+    "naam": "Evi", "rol": "Master Stylist & Barber", "foto": "/beelden/team/evi.png",
+    "bio": "Allround kracht met bijna twintig jaar ervaring: kleurtechnieken, snit én barbierwerk. De stylist voor wie alles in één keer goed wil.",
+    "boekbaar": true, "homepage": true
+  },
+  {
+    "naam": "Elke", "rol": "Top Stylist & Barber", "foto": "/beelden/team/elke.jpg",
+    "bio": "Gespecialiseerd in lokken en snit, en geschoold als barbier bij het legendarische Schorem in Rotterdam. Old-school scheren is bij haar in de beste handen.",
+    "boekbaar": true
+  },
+  {
+    "naam": "Hasan", "rol": "Top Stylist & Barber", "foto": "/beelden/team/hasan.jpg",
+    "bio": "Snit is zijn specialiteit — voor dames én heren. Rustig, precies en met oog voor wat bij jouw gezicht past.",
+    "boekbaar": true
+  },
+  {
+    "naam": "Lieke", "rol": "Top Stylist · lokken & kleur", "foto": "/beelden/team/lieke.jpg",
+    "bio": "Afgestudeerd met grote onderscheiding, ex-docent aan Academie Verbist en kapster achter de schermen bij Belgian Next Top Model. Sterk in lokken en kleurtechnieken.",
+    "boekbaar": true, "homepage": true
+  },
+  {
+    "naam": "Evelina", "rol": "Top Stylist · lokken & snit", "foto": "/beelden/team/evelina.jpg",
+    "bio": "Vijf jaar Antwerpse salonervaring en een vaste waarde voor lokken en snit. Klanten noemen haar in reviews bij naam — met reden.",
+    "boekbaar": true
+  },
+  {
+    "naam": "Tiana", "rol": "Make-Up Artist", "foto": "/beelden/team/tiana.jpg",
+    "bio": "Allround assistente en opgeleid Make-Up Artist. Zij zorgt voor de finishing touch bij bruiden en events.",
+    "boekbaar": false, "link": "/bruiden", "linkTekst": "Make-up bij bruiden"
+  }
 ]

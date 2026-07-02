@@ -1,0 +1,68 @@
+---
+import Base from '../layouts/Base.astro';
+import PaginaIntro from '../components/PaginaIntro.astro';
+import BoekBlok from '../components/BoekBlok.astro';
+import site from '../data/site.json';
+import team from '../data/team.json';
+---
+<Base
+  titel="Het team | Coiffure De Zaat Temse — acht specialisten"
+  beschrijving="Maak kennis met de acht stylisten van Coiffure De Zaat in Temse: colorists, barbers, bruidsspecialisten en een make-up artist. Boek bij wie bij jou past."
+  actief="/team"
+>
+  <PaginaIntro
+    kicker="Het team"
+    titel="Acht specialisten, één adres."
+    lead="Je boekt hier niet bij een salon — je boekt bij een specialist. Internationaal bekroond, elk jaar opnieuw in opleiding, en elk met een eigen sterkte."
+  />
+
+  <section class="leden">
+    <div class="kader">
+      {team.map((lid, i) => (
+        <article class={`lid ${i % 2 ? 'omgekeerd' : ''}`}>
+          <div class="foto" data-reveal-beeld>
+            <img src={lid.foto} alt={`${lid.naam} — ${lid.rol}`} loading="lazy" />
+          </div>
+          <div class="info" data-reveal="120">
+            <span class="caps rol">{lid.rol}</span>
+            <h2 class="serif">{lid.naam}</h2>
+            <p>{lid.bio}</p>
+            {lid.boekbaar
+              ? <a class="knop klein" href={site.boekUrl} target="_blank" rel="noopener">Boek bij {lid.naam}</a>
+              : <a class="tekstlink" href={lid.link}>{lid.linkTekst}</a>}
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="donker">
+    <div class="kader"><div class="smal" data-reveal>
+      <p class="kwoot serif">Nooit uitgeleerd.</p>
+      <p class="bron caps">Bekroond in Parijs, Pescara en Bulgarije &middot; geschoold bij Schorem, Aveda en La Biosthétique</p>
+    </div></div>
+  </section>
+
+  <BoekBlok tekst="Kies je stylist en zie meteen de eerste vrije plek." />
+</Base>
+
+<style>
+  .leden { padding-top: 0; }
+  .lid { display: grid; grid-template-columns: 380px 1fr; gap: 6vw; align-items: center; padding: 44px 0; border-bottom: 1px solid var(--kleur-lijn); max-width: 1000px; }
+  .lid:last-child { border-bottom: none; }
+  .lid.omgekeerd { grid-template-columns: 1fr 380px; }
+  .lid.omgekeerd .foto { order: 2; }
+  .foto { height: 400px; overflow: hidden; background: #e7e2d9; }
+  .foto img { filter: grayscale(1); transition: filter .5s ease, transform .8s ease; }
+  .lid:hover .foto img { filter: grayscale(0); transform: scale(1.02); }
+  .rol { color: var(--kleur-roze-tekst); display: block; margin-bottom: 10px; }
+  h2 { font-size: clamp(26px, 2.6vw, 36px); margin-bottom: 16px; }
+  .info p { color: var(--kleur-grijs); max-width: 460px; margin-bottom: 26px; }
+  .knop.klein { padding: 14px 30px; }
+  @media (max-width: 860px) {
+    .lid, .lid.omgekeerd { grid-template-columns: 1fr; gap: 24px; }
+    .lid.omgekeerd .foto { order: 0; }
+    .foto { height: 320px; }
+  }
+  @media (prefers-reduced-motion: reduce) { .foto img { transition: none; } }
+</style>

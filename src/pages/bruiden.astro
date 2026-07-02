@@ -1,0 +1,96 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import site from '../data/site.json';
+---
+<Base
+  titel="Bruidskapsel aan huis in Temse & het Waasland | Coiffure De Zaat"
+  beschrijving="Bruidskapsel en make-up aan huis, van eerste fotomoment tot laatste dans. Proefkapsel in het salon, internationaal bekroond bruidsteam. Vraag je offerte aan."
+  actief="/bruiden"
+  headerModus="overlay"
+  ogBeeld="/beelden/salon/bruiden-hero.jpg"
+>
+  <Hero
+    hoogte="half"
+    beeld="/beelden/salon/bruiden-hero.jpg"
+    alt="Bruidskapsel door Coiffure De Zaat"
+    kicker="Bruiden · aan huis in het hele Waasland"
+    titel="Stralen op jouw dag."
+  >
+    <a class="knop licht" href={`mailto:${site.email}?subject=Offerte%20bruidskapsel`}>Vraag een offerte</a>
+  </Hero>
+
+  <section>
+    <div class="kader"><div class="smal" data-reveal>
+      <span class="accentlijn" aria-hidden="true"></span>
+      <p class="serif statement">
+        Kapsel en make-up van het eerste fotomoment tot de laatste dans.
+        Joëlle — internationaal bekroond in bruidskapsels — neemt elke bruid
+        persoonlijk voor haar rekening.
+      </p>
+    </div></div>
+  </section>
+
+  <section class="proces">
+    <div class="kader"><div class="psmal">
+      <h2 class="caps ptitel" data-reveal>Zo werkt het</h2>
+      <div class="stap" data-reveal><span class="cijfer serif">I</span><p><strong>Kennismaking</strong>Jouw wensen, jouw stijl en de planning van de dag. Vrijblijvend.</p></div>
+      <div class="stap" data-reveal="80"><span class="cijfer serif">II</span><p><strong>Proefkapsel</strong>We testen de look vooraf in het salon — opsteek € 50,50.</p></div>
+      <div class="stap" data-reveal="160"><span class="cijfer serif">III</span><p><strong>De trouwdag</strong>Wij komen aan huis, ook voor mama's en bruidsmeisjes. Make-up door Tiana.</p></div>
+      <div class="stap" data-reveal="240"><span class="cijfer serif">IV</span><p><strong>Touch-ups</strong>Een nieuwe look voor het avondfeest? We blijven zolang jij wil.</p></div>
+      <div class="pactie" data-reveal>
+        <a class="knop" href={`mailto:${site.email}?subject=Offerte%20bruidskapsel`}>Vraag een offerte</a>
+        <a class="tekstlink" href={site.boekUrl} target="_blank" rel="noopener">of boek meteen je proefkapsel</a>
+      </div>
+      <p class="pnoot" data-reveal>Trouwdatum in het hoogseizoen? Boek zes tot twaalf maanden vooraf.</p>
+    </div></div>
+  </section>
+
+  <section class="weetjes-band">
+    <div class="kader"><div class="wsmal" data-reveal>
+      <h2 class="caps wtitel">Veelgestelde vragen</h2>
+      <details>
+        <summary>Wat kost een bruidskapsel aan huis?</summary>
+        <p>Elke trouwdag is anders: locatie, aantal personen, touch-ups. Daarom werken we met een offerte op maat — je weet vooraf exact wat alles kost. Als richtpunt: een opsteek in het salon is € 50,50.</p>
+      </details>
+      <details>
+        <summary>Doen jullie ook make-up?</summary>
+        <p>Ja. Tiana, onze Make-Up Artist, verzorgt de make-up van bruid en gezelschap — afgestemd op je kapsel en je stijl.</p>
+      </details>
+      <details>
+        <summary>Komen jullie ook voor bruidsmeisjes en mama's?</summary>
+        <p>Zeker. We plannen de volledige ochtend samen in, zodat iedereen op tijd én ontspannen klaar is.</p>
+      </details>
+    </div></div>
+  </section>
+
+  <section class="donker">
+    <div class="kader"><div class="smal" data-reveal>
+      <p class="kwoot serif">Ook voor events.</p>
+      <p class="dtekst">Bedrijfsfeest, fotoshoot of vrijgezellen: we komen met het team ter plaatse en zorgen dat iedereen er op z'n best uitziet.</p>
+      <div class="dactie"><a class="knop licht" href={`mailto:${site.email}?subject=Offerte%20event`}>Vraag een event-offerte</a></div>
+    </div></div>
+  </section>
+</Base>
+
+<style>
+  .proces { padding-top: 40px; }
+  .psmal, .wsmal { max-width: 680px; margin: 0 auto; }
+  .ptitel, .wtitel { color: var(--kleur-grijs); margin-bottom: 14px; }
+  .stap { display: flex; gap: 34px; padding: 26px 0; border-bottom: 1px solid var(--kleur-lijn); }
+  .cijfer { font-style: italic; font-size: 22px; color: var(--kleur-roze-tekst); min-width: 34px; }
+  .stap p { color: var(--kleur-grijs); }
+  .stap strong { display: block; color: var(--kleur-inkt); font-weight: 400; margin-bottom: 3px; }
+  .pactie { margin-top: 44px; display: flex; gap: 26px; align-items: center; flex-wrap: wrap; }
+  .pnoot { margin-top: 20px; font-size: 13px; color: var(--kleur-grijs); }
+  .weetjes-band { background: var(--kleur-klei); }
+  details { border-bottom: 1px solid rgba(25,24,23,.14); }
+  details:first-of-type { border-top: 1px solid rgba(25,24,23,.14); }
+  summary { cursor: pointer; padding: 19px 0; list-style: none; position: relative; padding-right: 34px; }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: "+"; position: absolute; right: 4px; top: 50%; transform: translateY(-50%); font-family: var(--font-serif); font-size: 19px; color: var(--kleur-roze-tekst); transition: transform .3s var(--beweging-zacht); }
+  details[open] summary::after { transform: translateY(-50%) rotate(45deg); }
+  details p { color: var(--kleur-grijs); padding: 0 0 20px; max-width: 560px; }
+  .dtekst { color: var(--kleur-been-75); margin-top: 22px; max-width: 520px; margin-left: auto; margin-right: auto; }
+  .dactie { margin-top: 32px; }
+</style>

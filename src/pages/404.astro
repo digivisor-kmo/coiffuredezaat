@@ -1,0 +1,30 @@
+---
+import Base from '../layouts/Base.astro';
+import site from '../data/site.json';
+---
+<Base
+  titel="Pagina niet gevonden | Coiffure De Zaat"
+  beschrijving="Deze pagina bestaat niet (meer). Vind je weg terug naar Coiffure De Zaat in Temse."
+  actief=""
+>
+  <section class="vierhonderdvier">
+    <div class="kader"><div class="smal">
+      <span class="accentlijn" aria-hidden="true"></span>
+      <p class="caps code">404</p>
+      <h1 class="serif">Deze pagina is geknipt.</h1>
+      <p class="uitleg">Wat je zoekt staat hier niet (meer). Waar kunnen we je wél mee helpen?</p>
+      <div class="acties">
+        <a class="knop" href="/">Naar de homepage</a>
+        <a class="tekstlink" href={site.boekUrl} target="_blank" rel="noopener">of boek meteen een afspraak</a>
+      </div>
+    </div></div>
+  </section>
+</Base>
+
+<style>
+  .vierhonderdvier { padding: 140px 0 160px; }
+  .code { color: var(--kleur-roze-tekst); margin-bottom: 18px; }
+  h1 { font-size: clamp(30px, 4vw, 48px); font-weight: 400; }
+  .uitleg { color: var(--kleur-grijs); margin-top: 18px; }
+  .acties { margin-top: 36px; display: flex; gap: 26px; align-items: center; justify-content: center; flex-wrap: wrap; }
+</style>

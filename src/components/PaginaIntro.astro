@@ -1,0 +1,21 @@
+---
+/* Rustige pagina-opening voor pagina's zonder hero. */
+const { kicker, titel, lead = null } = Astro.props;
+---
+<section class="intro">
+  <div class="kader"><div class="binnen" data-reveal>
+    <span class="accentlijn linksop" aria-hidden="true"></span>
+    <span class="caps kicker">{kicker}</span>
+    <h1 class="serif">{titel}</h1>
+    {lead && <p class="lead">{lead}</p>}
+  </div></div>
+</section>
+
+<style>
+  .intro { padding: 96px 0 72px; }
+  .binnen { max-width: 720px; }
+  .kicker { color: var(--kleur-grijs); display: block; margin-bottom: 16px; }
+  h1 { font-size: clamp(32px, 4vw, 52px); font-weight: 400; }
+  .lead { color: var(--kleur-grijs); margin-top: 20px; max-width: 520px; font-size: 16px; }
+  @media (max-width: 700px) { .intro { padding: 64px 0 48px; } }
+</style>

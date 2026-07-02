@@ -1,0 +1,123 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import TeamGrid from '../components/TeamGrid.astro';
+import PrijsLijst from '../components/PrijsLijst.astro';
+import site from '../data/site.json';
+import team from '../data/team.json';
+import prijzen from '../data/prijzen.json';
+
+const colorists = team.filter((l) => ['Melanie', 'Lieke', 'Evelina'].includes(l.naam));
+const kleurPrijzen = prijzen.categorieen.find((c) => c.titel === 'Kleur & balayage');
+---
+<Base
+  titel="Balayage & kleuring in Temse | Coiffure De Zaat"
+  beschrijving="Balayage, kleuring, ombré en lokken bij Coiffure De Zaat in Temse. Ammoniakvrij met La Biosthétique en Aveda, eerlijk advies vooraf. Balayage vanaf €94."
+  actief="/kleuren-balayage"
+  headerModus="overlay"
+  ogBeeld="/beelden/salon/dames-haar.png"
+>
+  <Hero
+    hoogte="half"
+    beeld="/beelden/salon/dames-haar.png"
+    alt="Kleurwerk van Coiffure De Zaat"
+    kicker="Kleur & balayage"
+    titel="Kleur is ons vak."
+  >
+    <a class="knop licht" href={site.boekUrl} target="_blank" rel="noopener">Boek een kleurbehandeling</a>
+  </Hero>
+
+  <section>
+    <div class="kader"><div class="smal" data-reveal>
+      <span class="accentlijn" aria-hidden="true"></span>
+      <p class="serif statement">
+        Eerlijk advies eerst. We bekijken wat jouw haar aankan en wat de kleur
+        vraagt — soms is dat één sessie, soms een traject. Je weet vooraf waar
+        je aan begint, en wat het kost.
+      </p>
+    </div></div>
+  </section>
+
+  <section class="portfolio">
+    <div class="kader">
+      <div class="pgrid">
+        <div class="ptekst" data-reveal>
+          <span class="accentlijn linksop" aria-hidden="true"></span>
+          <span class="caps pkicker">Het werk spreekt</span>
+          <h2 class="serif">Elke kleur is maatwerk.</h2>
+          <p>
+            Balayage in één of twee kleuren, ombré, lokken of een volledige kleuring —
+            altijd afgestemd op jouw huidtint, snit en onderhoud. Volg ons recentste
+            werk op <a class="tekstlink" href={site.socials.instagram} target="_blank" rel="noopener">Instagram</a>.
+          </p>
+        </div>
+        <div class="pbeeld" data-reveal-beeld data-parallax="beeld">
+          <img src="/beelden/salon/dames-haar.png" alt="Kleurresultaat bij De Zaat" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="technieken">
+    <div class="kader">
+      <div class="tsmal">
+        <PrijsLijst categorie={kleurPrijzen} />
+        <p class="tvoet" data-reveal>Alle behandelingen inclusief brushing. Lang of dik haar kan een supplement vragen — dat hoor je vooraf.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="donker">
+    <div class="kader"><div class="smal" data-reveal>
+      <p class="kwoot serif">Eerlijk over wat haalbaar is.</p>
+      <p class="dtekst">
+        Een grote transformatie — donker naar koel blond, bijvoorbeeld — vraagt soms
+        meerdere sessies. Je krijgt vooraf een eerlijk stappenplan met een eerlijke prijs.
+        Twijfel je? Start met een gratis adviesgesprek.
+      </p>
+      <div class="dactie"><a class="knop licht" href={site.boekUrl} target="_blank" rel="noopener">Gratis adviesgesprek</a></div>
+    </div></div>
+  </section>
+
+  <section>
+    <div class="kader">
+      <div class="sectiekop" data-reveal>
+        <span class="caps">Jouw colorists</span>
+        <h2 class="serif">In de handen van specialisten.</h2>
+      </div>
+      <div class="colorists"><TeamGrid leden={colorists} /></div>
+    </div>
+  </section>
+
+  <section class="strak merken">
+    <div class="kader"><div class="smal" data-reveal>
+      <span class="accentlijn" aria-hidden="true"></span>
+      <p class="serif statement klein">Ammoniakvrij, ook voor een gevoelige hoofdhuid — zonder in te leveren op resultaat.</p>
+      <p class="caps merkenlijst">La Biosthétique &middot; Aveda &middot; Screen</p>
+      <div class="dactie"><a class="knop" href={site.boekUrl} target="_blank" rel="noopener">Boek je kleurbehandeling</a></div>
+    </div></div>
+  </section>
+</Base>
+
+<style>
+  .portfolio { background: var(--kleur-klei); }
+  .pgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 8vw; align-items: center; }
+  .pkicker { color: var(--kleur-grijs); display: block; margin-bottom: 16px; }
+  .ptekst h2 { font-size: clamp(26px, 2.8vw, 38px); margin-bottom: 20px; }
+  .ptekst p { color: var(--kleur-grijs); max-width: 420px; }
+  .pbeeld { height: 460px; overflow: hidden; }
+  .pbeeld img { transform: scale(1.12); will-change: transform; }
+  .technieken .tsmal { max-width: 720px; }
+  .tvoet { font-size: 13px; color: var(--kleur-grijs); margin-top: -34px; }
+  .dtekst { color: var(--kleur-been-75); margin-top: 22px; max-width: 520px; margin-left: auto; margin-right: auto; }
+  .dactie { margin-top: 32px; }
+  .colorists :global(.rooster) { grid-template-columns: repeat(3, 1fr); max-width: 1000px; margin: 0 auto; }
+  .merken { padding: var(--ruimte-sectie) 0; }
+  .statement.klein { font-size: clamp(20px, 2.2vw, 27px); }
+  .merkenlijst { color: var(--kleur-roze-tekst); margin-top: 24px; }
+  @media (max-width: 960px) {
+    .pgrid { grid-template-columns: 1fr; gap: 36px; }
+    .pbeeld { height: 340px; }
+    .colorists :global(.rooster) { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
