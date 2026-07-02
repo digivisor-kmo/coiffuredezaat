@@ -5,7 +5,7 @@ const { leden } = Astro.props;
 <div class="rooster">
   {leden.map((lid, i) => (
     <div class="lid" data-reveal={String((i % 4) * 90)}>
-      <div class="foto"><img src={lid.foto} alt={`${lid.naam} — ${lid.rol}`} loading="lazy" /></div>
+      <div class="foto" data-reveal-beeld><img src={lid.foto} alt={`${lid.naam} — ${lid.rol}`} loading="lazy" /></div>
       <h3 class="serif">{lid.naam}</h3>
       <div class="rol">{lid.rol}</div>
       {lid.boekbaar

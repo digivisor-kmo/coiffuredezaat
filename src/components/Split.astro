@@ -4,10 +4,11 @@ const { beeld, alt, kicker, titel, beeldRechts = false } = Astro.props;
 ---
 <section class="strak">
   <div class={`split ${beeldRechts ? 'omgekeerd' : ''}`}>
-    <div class="beeld" data-parallax="beeld" data-reveal>
+    <div class="beeld" data-parallax="beeld" data-reveal-beeld>
       <img src={beeld} alt={alt} loading="lazy" />
     </div>
-    <div class="inhoud" data-reveal="120">
+    <div class="inhoud" data-reveal="150">
+      <span class="accentlijn linksop" aria-hidden="true"></span>
       {kicker && <span class="caps kicker">{kicker}</span>}
       <h2 class="serif">{titel}</h2>
       <div class="tekst"><slot /></div>

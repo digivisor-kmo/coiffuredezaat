@@ -2,20 +2,30 @@
 
 const rustig = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-/* ---- reveal bij eerste keer in beeld ---- */
+/* ---- reveal bij eerste keer in beeld (tekst: fade-up · beeld: clip) ---- */
 if (!rustig) {
-  const doelen = document.querySelectorAll('[data-reveal]');
-  doelen.forEach((el, i) => {
+  const tekst = document.querySelectorAll('[data-reveal]');
+  const beeld = document.querySelectorAll('[data-reveal-beeld]');
+  tekst.forEach((el) => {
     el.classList.add('reveal');
-    const vertraging = el.dataset.reveal;
-    if (vertraging) el.style.transitionDelay = vertraging + 'ms';
+    if (el.dataset.reveal) el.style.transitionDelay = el.dataset.reveal + 'ms';
   });
+  beeld.forEach((el) => el.classList.add('reveal-beeld'));
   const io = new IntersectionObserver((entries) => {
     for (const e of entries) {
       if (e.isIntersecting) { e.target.classList.add('toon'); io.unobserve(e.target); }
     }
   }, { threshold: .12, rootMargin: '0px 0px -40px 0px' });
-  doelen.forEach((el) => io.observe(el));
+  tekst.forEach((el) => io.observe(el));
+  beeld.forEach((el) => io.observe(el));
+}
+
+/* ---- header: transparant boven de hero, inkt zodra je scrolt ---- */
+const kop = document.querySelector('[data-header][data-modus="overlay"]');
+if (kop) {
+  const zet = () => kop.classList.toggle('vast', window.scrollY > 40);
+  window.addEventListener('scroll', zet, { passive: true });
+  zet();
 }
 
 /* ---- parallax op hero- en sectiebeelden ---- */

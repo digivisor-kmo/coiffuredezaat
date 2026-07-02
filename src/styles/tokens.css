@@ -12,6 +12,7 @@
   --kleur-roze-tekst:  #8a5f4e;  /* tekstvariant op licht (5.0:1) */
   --kleur-been-75:     rgba(247, 244, 238, .75);
   --kleur-been-95:     rgba(247, 244, 238, .95);
+  --kleur-klei:        #ece6da;  /* warme sectie-achtergrond */
 
   /* typografie — twee families, drie rollen */
   --font-serif: 'Libre Caslon Text', 'Times New Roman', serif;

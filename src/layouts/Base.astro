@@ -8,6 +8,7 @@ const {
   titel,
   beschrijving,
   actief = '',
+  headerModus = 'vast', /* 'overlay' voor pagina's met full-bleed hero */
   ogBeeld = '/beelden/salon/hero-home-salon.jpg',
 } = Astro.props;
 
@@ -67,8 +68,8 @@ const schema = {
   </head>
   <body>
     <a class="skip" href="#inhoud">Naar de inhoud</a>
-    <Header actief={actief} />
-    <main id="inhoud">
+    <Header actief={actief} modus={headerModus} />
+    <main id="inhoud" class={headerModus === 'vast' ? 'onder-header' : ''}>
       <slot />
     </main>
     <Footer />
@@ -79,4 +80,6 @@ const schema = {
 <style>
   .skip { position: absolute; left: -9999px; top: 0; background: var(--kleur-inkt); color: var(--kleur-been); padding: 12px 20px; z-index: 100; }
   .skip:focus { left: 0; }
+  .onder-header { padding-top: 84px; }
+  @media (max-width: 960px) { .onder-header { padding-top: 72px; } }
 </style>

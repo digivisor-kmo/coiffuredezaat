@@ -1,47 +1,76 @@
 ---
 import site from '../data/site.json';
+/* Donkere footer die zich onder de pagina onthult (sticky reveal, zie global.css). */
 ---
 <footer>
-  <div class="kader fgrid" data-reveal>
-    <div>
-      <img class="flogo" src="/beelden/logo-wit.png" alt={site.naam} width="230" height="69" />
-      {site.adres.straat}<br />{site.adres.postcode} {site.adres.gemeente}<br />
-      <a href={`tel:${site.telefoonLink}`}>{site.telefoon}</a><br />
-      <a href={`mailto:${site.email}`}>{site.email}</a>
+  <div class="kader binnen">
+    <div class="boven">
+      <img class="flogo" src="/beelden/logo-wit.png" alt={site.naam} width="460" height="138" loading="lazy" />
+      <p class="uitnodiging serif">Tijd voor jou?</p>
+      <a class="knop licht" href={site.boekUrl} target="_blank" rel="noopener">Boek een afspraak</a>
     </div>
-    <div>
-      <span class="caps">Salon</span>
-      <a href="/diensten-prijzen">Diensten &amp; prijzen</a>
-      <a href="/kleuren-balayage">Kleur &amp; balayage</a>
-      <a href="/team">Team</a>
-      <a href="/bruiden">Bruiden</a>
+
+    <div class="fgrid">
+      <div>
+        <span class="caps">Salon</span>
+        <a href="/diensten-prijzen">Diensten &amp; prijzen</a>
+        <a href="/kleuren-balayage">Kleur &amp; balayage</a>
+        <a href="/team">Team</a>
+        <a href="/bruiden">Bruiden</a>
+      </div>
+      <div>
+        <span class="caps">Praktisch</span>
+        <a href="/contact">Contact &amp; uren</a>
+        <a href={site.boekUrl} target="_blank" rel="noopener">Online boeken</a>
+        <a href="/over">Over De Zaat</a>
+      </div>
+      <div>
+        <span class="caps">Bezoek</span>
+        <address>
+          {site.adres.straat}<br />{site.adres.postcode} {site.adres.gemeente}
+        </address>
+        <a href={`tel:${site.telefoonLink}`}>{site.telefoon}</a>
+        <a href={`mailto:${site.email}`}>{site.email}</a>
+      </div>
+      <div>
+        <span class="caps">Volg ons</span>
+        <a href={site.socials.instagram} target="_blank" rel="noopener">Instagram</a>
+        <a href={site.socials.facebook} target="_blank" rel="noopener">Facebook</a>
+      </div>
     </div>
-    <div>
-      <span class="caps">Praktisch</span>
-      <a href="/contact">Contact &amp; uren</a>
-      <a href={site.boekUrl} target="_blank" rel="noopener">Online boeken</a>
-      <a href="/over">Over De Zaat</a>
+
+    <div class="onder">
+      <span>© {new Date().getFullYear()} {site.naam} — {site.adres.gemeente} aan de Schelde</span>
+      <a href="/privacy">Privacy</a>
     </div>
-    <div>
-      <span class="caps">Volg ons</span>
-      <a href={site.socials.instagram} target="_blank" rel="noopener">Instagram</a>
-      <a href={site.socials.facebook} target="_blank" rel="noopener">Facebook</a>
-    </div>
-  </div>
-  <div class="kader onder">
-    <span>© {new Date().getFullYear()} {site.naam}</span>
-    <a href="/privacy">Privacy</a>
   </div>
 </footer>
 
 <style>
-  footer { border-top: 1px solid var(--kleur-lijn); padding: 70px 0 40px; font-size: 13px; color: var(--kleur-grijs); }
-  .fgrid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; }
-  .flogo { height: 30px; width: auto; object-fit: contain; filter: brightness(0); opacity: .9; margin-bottom: 18px; }
-  footer .caps { color: var(--kleur-inkt); display: block; margin-bottom: 14px; }
-  footer a { color: var(--kleur-grijs); text-decoration: none; display: block; padding: 3px 0; }
-  footer a:hover { color: var(--kleur-inkt); }
-  .onder { display: flex; justify-content: space-between; margin-top: 50px; padding-top: 24px; border-top: 1px solid var(--kleur-lijn); }
-  .onder a { display: inline; }
-  @media (max-width: 960px) { .fgrid { grid-template-columns: 1fr 1fr; } }
+  footer {
+    position: sticky; bottom: 0; z-index: 0;
+    background: var(--kleur-inkt); color: rgba(247, 244, 238, .78);
+    font-size: 13px;
+  }
+  .binnen { padding-top: 90px; padding-bottom: 34px; }
+
+  .boven { text-align: center; padding-bottom: 74px; border-bottom: 1px solid rgba(247,244,238,.12); }
+  .flogo { height: 64px; width: auto; object-fit: contain; margin: 0 auto 30px; }
+  .uitnodiging { font-size: clamp(22px, 2.4vw, 30px); font-style: italic; color: var(--kleur-been); margin-bottom: 30px; }
+
+  .fgrid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; padding: 58px 0; }
+  footer .caps { color: var(--kleur-roze); display: block; margin-bottom: 16px; }
+  footer a { color: rgba(247, 244, 238, .78); text-decoration: none; display: block; padding: 4px 0; transition: color .25s ease; }
+  footer a:hover { color: var(--kleur-been); }
+  address { font-style: normal; padding: 4px 0; }
+
+  .onder { display: flex; justify-content: space-between; gap: 20px; padding-top: 26px; border-top: 1px solid rgba(247,244,238,.12); color: rgba(247,244,238,.5); }
+  .onder a { display: inline; color: rgba(247,244,238,.5); }
+  .onder a:hover { color: var(--kleur-been); }
+
+  @media (max-width: 960px) {
+    .fgrid { grid-template-columns: 1fr 1fr; }
+    .flogo { height: 44px; }
+    .onder { flex-direction: column; }
+  }
 </style>

@@ -1,6 +1,12 @@
 ---
 import site from '../data/site.json';
-const { actief = '' } = Astro.props;
+/*
+  Twee modi:
+  - overlay: transparant bovenop een hero (homepage) → wordt inkt bij scrollen
+  - vast:    altijd inkt (pagina's zonder hero)
+  In beide gevallen: het originele logo (wit + oudroze) op donkere ondergrond.
+*/
+const { actief = '', modus = 'vast' } = Astro.props;
 const items = [
   { pad: '/diensten-prijzen', label: 'Diensten & prijzen' },
   { pad: '/kleuren-balayage', label: 'Kleur' },
@@ -8,7 +14,7 @@ const items = [
   { pad: '/bruiden', label: 'Bruiden' },
 ];
 ---
-<header>
+<header class={modus === 'vast' ? 'vast' : ''} data-header data-modus={modus}>
   <div class="hgrid">
     <nav class="links" aria-label="Hoofdnavigatie">
       {items.map((i) => (
@@ -29,28 +35,48 @@ const items = [
   <div class="mmenu" data-menu>
     {items.map((i) => <a href={i.pad}>{i.label}</a>)}
     <a href="/contact">Contact</a>
-    <a href={site.boekUrl} target="_blank" rel="noopener">Boek een afspraak</a>
+    <a class="roze" href={site.boekUrl} target="_blank" rel="noopener">Boek een afspraak →</a>
   </div>
 </header>
 
 <style>
-  header { position: sticky; top: 0; z-index: 60; background: rgba(247, 244, 238, .92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--kleur-lijn); }
-  .hgrid { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 0 var(--kader-pad); height: 76px; max-width: var(--kader-max); margin: 0 auto; }
+  header {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 60;
+    background: transparent;
+    transition: background .4s ease, box-shadow .4s ease;
+  }
+  header.vast { background: var(--kleur-inkt); box-shadow: 0 1px 0 rgba(247,244,238,.08); }
+
+  .hgrid { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 0 var(--kader-pad); height: 84px; max-width: var(--kader-max); margin: 0 auto; }
   nav.links { display: flex; gap: 30px; }
+
+  /* alle headertekst is licht: transparant staat altijd op donker beeld */
+  header :global(.navlink) { color: var(--kleur-been); --ul: var(--kleur-roze); }
   .merk { display: flex; justify-content: center; }
-  .merk img { height: 34px; width: auto; object-fit: contain; filter: brightness(0); }
+  .merk img { height: 40px; width: auto; object-fit: contain; }
+
   .hrechts { display: flex; justify-content: flex-end; gap: 26px; align-items: center; }
-  .boek { font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--kleur-inkt); text-decoration: none; border: 1px solid var(--kleur-inkt); padding: 11px 22px; transition: background .25s ease, color .25s ease; }
-  .boek:hover { background: var(--kleur-inkt); color: var(--kleur-been); }
+  .boek {
+    font-size: 11px; letter-spacing: .18em; text-transform: uppercase; text-decoration: none;
+    color: var(--kleur-been); border: 1px solid rgba(247,244,238,.55); padding: 12px 24px;
+    transition: background .3s ease, color .3s ease, border-color .3s ease;
+  }
+  .boek:hover { background: var(--kleur-been); color: var(--kleur-inkt); border-color: var(--kleur-been); }
+
   .burger { display: none; background: none; border: none; cursor: pointer; width: 26px; justify-self: end; }
-  .burger span { display: block; height: 1px; background: var(--kleur-inkt); margin: 7px 0; }
-  .mmenu { display: none; border-bottom: 1px solid var(--kleur-lijn); background: var(--kleur-been); padding: 26px var(--kader-pad) 34px; }
-  .mmenu :global(a), .mmenu a { display: block; font-size: 12px; letter-spacing: .18em; text-transform: uppercase; color: var(--kleur-inkt); text-decoration: none; padding: 13px 0; border-bottom: 1px solid var(--kleur-lijn); }
+  .burger span { display: block; height: 1px; background: var(--kleur-been); margin: 7px 0; transition: transform .3s ease; }
+
+  .mmenu { display: none; background: var(--kleur-inkt); padding: 20px var(--kader-pad) 34px; }
+  .mmenu a { display: block; font-size: 12px; letter-spacing: .18em; text-transform: uppercase; color: var(--kleur-been); text-decoration: none; padding: 14px 0; border-bottom: 1px solid rgba(247,244,238,.12); }
+  .mmenu a.roze { color: var(--kleur-roze); border-bottom: none; }
   .mmenu.open { display: block; }
+
   @media (max-width: 960px) {
     nav.links, .hrechts { display: none; }
-    .hgrid { grid-template-columns: auto 1fr auto; }
+    .hgrid { grid-template-columns: auto 1fr auto; height: 72px; }
     .merk { justify-self: start; }
+    .merk img { height: 32px; }
     .burger { display: block; }
+    header:has(.mmenu.open) { background: var(--kleur-inkt); }
   }
 </style>

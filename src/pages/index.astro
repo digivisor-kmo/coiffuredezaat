@@ -12,6 +12,7 @@ const homepageTeam = team.filter((l) => l.homepage);
   titel="Kapper Temse | Coiffure De Zaat — duurzaam kapsalon aan de Schelde"
   beschrijving="Kapsalon in Temse met acht specialisten, ammoniakvrije kleuringen en balayage op maat. 4,7★ op Google. Boek online je afspraak bij Coiffure De Zaat."
   actief="/"
+  headerModus="overlay"
 >
   <Hero
     beeld="/beelden/salon/hero-home-salon.jpg"
@@ -25,12 +26,12 @@ const homepageTeam = team.filter((l) => l.homepage);
 
   <section>
     <div class="kader"><div class="smal" data-reveal>
+      <span class="accentlijn" aria-hidden="true"></span>
       <p class="serif statement">
-        Acht specialisten, ammoniakvrije kleur en de rust om het goed te doen.
-        Al meer dan twintig jaar het adres voor haar in {site.adres.gemeente} —
-        vroeger als Coiffure Joëlle, vandaag als De Zaat.
+        Haar krijgt hier de tijd die het verdient. Acht specialisten,
+        kleur zonder ammoniak, en een stoel die even helemaal van jou is.
       </p>
-      <p class="caps subscore">{site.reviews.score} op {site.reviews.bron} &middot; {site.reviews.aantal} reviews</p>
+      <p class="caps subscore">Twintig jaar vakmanschap in {site.adres.gemeente} &middot; {site.reviews.score} op {site.reviews.bron} &middot; {site.reviews.aantal} reviews</p>
     </div></div>
   </section>
 
@@ -80,26 +81,50 @@ const homepageTeam = team.filter((l) => l.homepage);
     </div>
   </section>
 
-  <hr class="hairline" />
-
-  <section>
-    <div class="kader"><div class="smal" data-reveal>
-      <span class="caps bezoek-kicker">Bezoek</span>
-      <p class="serif statement klein">
-        {site.adres.straat}, {site.adres.gemeente}<br />
-        di 9–12 &middot; wo &amp; vr 9–18 &middot; do 9–19 &middot; za 7.30–16
-      </p>
-      <div class="centreer krap"><a class="knop" href={site.boekUrl} target="_blank" rel="noopener">Boek een afspraak</a></div>
-      <p class="belnoot">of bel <a class="tekstlink" href={`tel:${site.telefoonLink}`}>{site.telefoon}</a></p>
-    </div></div>
+  <section class="bezoek">
+    <div class="kader bezoekgrid">
+      <div class="bezoek-intro" data-reveal>
+        <span class="accentlijn linksop" aria-hidden="true"></span>
+        <span class="caps bezoek-kicker">Bezoek</span>
+        <h2 class="serif bezoek-titel">Kom even<br />tot rust.</h2>
+        <p class="bezoek-adres">
+          {site.adres.straat}, {site.adres.postcode} {site.adres.gemeente}<br />
+          <span class="stil">Gratis parkeren op het plein, vlak bij de Temsebrug.</span>
+        </p>
+        <div class="bezoek-acties">
+          <a class="knop" href={site.boekUrl} target="_blank" rel="noopener">Boek een afspraak</a>
+          <a class="tekstlink" href={`tel:${site.telefoonLink}`}>{site.telefoon}</a>
+        </div>
+      </div>
+      <div class="bezoek-uren" data-reveal="150">
+        {site.uren.map((u) => (
+          <div class="uur-rij">
+            <span class="dag">{u.dag}</span>
+            <span class="tijd serif">{u.tijd}</span>
+          </div>
+        ))}
+        <p class="stil feestdag">{site.feestdagNoot}</p>
+      </div>
+    </div>
   </section>
 </Base>
 
 <style>
   .subscore { color: var(--kleur-grijs); margin-top: 34px; }
   .centreer { text-align: center; margin-top: 58px; }
-  .centreer.krap { margin-top: 38px; }
+
+  /* ---- bezoek: warm klei-blok, uren als typografisch menu ---- */
+  .bezoek { background: var(--kleur-klei); }
+  .bezoekgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 8vw; align-items: center; }
   .bezoek-kicker { color: var(--kleur-grijs); display: block; margin-bottom: 16px; }
-  .statement.klein { font-size: clamp(19px, 2vw, 24px); }
-  .belnoot { margin-top: 20px; font-size: 13px; color: var(--kleur-grijs); }
+  .bezoek-titel { font-size: clamp(30px, 3.4vw, 46px); margin-bottom: 26px; }
+  .bezoek-adres { color: var(--kleur-grijs); }
+  .stil { font-size: 13px; color: var(--kleur-grijs); }
+  .bezoek-acties { margin-top: 34px; display: flex; gap: 26px; align-items: center; flex-wrap: wrap; }
+  .uur-rij { display: flex; justify-content: space-between; align-items: baseline; gap: 24px; padding: 17px 0; border-bottom: 1px solid rgba(25,24,23,.14); }
+  .uur-rij:first-child { border-top: 1px solid rgba(25,24,23,.14); }
+  .dag { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; }
+  .tijd { font-size: 17px; }
+  .feestdag { margin-top: 16px; }
+  @media (max-width: 960px) { .bezoekgrid { grid-template-columns: 1fr; gap: 44px; } }
 </style>

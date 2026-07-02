@@ -1,9 +1,11 @@
 ---
-/* Full-bleed hero met scrim (leesbaarheid gegarandeerd, WCAG AA) en parallax. */
+/* Full-bleed hero met scrim (WCAG AA), filmische settle-zoom en parallax. */
 const { beeld, alt, kicker, titel, hoogte = 'vol' } = Astro.props;
 ---
-<div class={`hero ${hoogte}`} data-parallax="hero">
-  <img src={beeld} alt={alt} fetchpriority="high" />
+<div class={`hero ${hoogte}`}>
+  <div class="beeldwrap" data-parallax="hero">
+    <img src={beeld} alt={alt} fetchpriority="high" />
+  </div>
   <div class="tekst">
     {kicker && <span class="caps kicker">{kicker}</span>}
     <h1 class="serif">{titel}</h1>
@@ -12,15 +14,18 @@ const { beeld, alt, kicker, titel, hoogte = 'vol' } = Astro.props;
 </div>
 
 <style>
-  .hero { position: relative; height: calc(100vh - 76px); min-height: 540px; max-height: 860px; overflow: hidden; background: var(--kleur-inkt); }
-  .hero.half { height: 56vh; min-height: 420px; }
-  .hero :global(img) { transform: scale(1.12); will-change: transform; }
-  .hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(25,24,23,.15) 25%, rgba(25,24,23,.55) 68%, rgba(25,24,23,.82) 100%); pointer-events: none; }
-  .tekst { position: absolute; left: 0; right: 0; bottom: 0; padding: 0 var(--kader-pad) 64px; color: var(--kleur-been); max-width: var(--kader-max); margin: 0 auto; z-index: 2; animation: heroIn 1s var(--beweging-zacht) .15s both; }
+  .hero { position: relative; height: 100vh; min-height: 560px; max-height: 980px; overflow: hidden; background: var(--kleur-inkt); }
+  .hero.half { height: 62vh; min-height: 460px; }
+  /* settle-zoom op de wrapper, parallax op de img — geen conflict */
+  .beeldwrap { position: absolute; inset: 0; animation: settle 1.8s var(--beweging-zacht) both; }
+  .beeldwrap :global(img) { transform: scale(1.12); will-change: transform; }
+  @keyframes settle { from { transform: scale(1.06); } to { transform: scale(1); } }
+  .hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(25,24,23,.32) 0%, rgba(25,24,23,.12) 30%, rgba(25,24,23,.55) 70%, rgba(25,24,23,.82) 100%); pointer-events: none; }
+  .tekst { position: absolute; left: 0; right: 0; bottom: 0; padding: 0 var(--kader-pad) 72px; color: var(--kleur-been); max-width: var(--kader-max); margin: 0 auto; z-index: 2; animation: heroIn 1.1s var(--beweging-zacht) .25s both; }
   .kicker { display: block; margin-bottom: 18px; color: var(--kleur-been-95); }
-  h1 { font-size: clamp(30px, 4vw, 52px); max-width: 620px; font-weight: 400; }
-  .acties { margin-top: 34px; display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
-  @keyframes heroIn { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
-  @media (prefers-reduced-motion: reduce) { .tekst { animation: none; } }
-  @media (max-width: 700px) { .tekst { padding: 0 var(--kader-pad-m) 44px; } }
+  h1 { font-size: clamp(30px, 4vw, 54px); max-width: 640px; font-weight: 400; }
+  .acties { margin-top: 34px; display: flex; gap: 22px; flex-wrap: wrap; align-items: center; }
+  @keyframes heroIn { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) { .tekst, .beeldwrap { animation: none; } }
+  @media (max-width: 700px) { .tekst { padding: 0 var(--kader-pad-m) 48px; } }
 </style>
