@@ -14,8 +14,9 @@ const { beeld, alt, kicker, titel, hoogte = 'vol' } = Astro.props;
 </div>
 
 <style>
-  .hero { position: relative; height: 100vh; min-height: 560px; max-height: 980px; overflow: hidden; background: var(--kleur-inkt); }
-  .hero.half { height: 62vh; min-height: 460px; }
+  /* svh: rekent niet mee wat achter de mobiele browser-UI valt */
+  .hero { position: relative; height: 100vh; height: 100svh; min-height: 560px; max-height: 980px; overflow: hidden; background: var(--kleur-inkt); }
+  .hero.half { height: 62vh; height: 62svh; min-height: 460px; }
   /* settle-zoom op de wrapper, parallax op de img — geen conflict */
   .beeldwrap { position: absolute; inset: 0; animation: settle 1.8s var(--beweging-zacht) both; }
   .beeldwrap :global(img) { transform: scale(1.12); will-change: transform; }
@@ -28,7 +29,7 @@ const { beeld, alt, kicker, titel, hoogte = 'vol' } = Astro.props;
   @keyframes heroIn { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: none; } }
   @media (prefers-reduced-motion: reduce) { .tekst, .beeldwrap { animation: none; } }
   @media (max-width: 700px) {
-    .tekst { padding: 0 var(--kader-pad-m) 48px; }
+    .tekst { padding: 0 var(--kader-pad-m) 72px; }
     /* CTA's prominent op mobiel: primair vol, alles gestapeld en volle breedte */
     .acties { flex-direction: column; align-items: stretch; gap: 16px; margin-top: 30px; }
     .acties :global(.knop) { width: 100%; background: var(--kleur-been); color: var(--kleur-inkt); border-color: var(--kleur-been); padding: 18px 20px; }
