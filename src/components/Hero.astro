@@ -27,5 +27,11 @@ const { beeld, alt, kicker, titel, hoogte = 'vol' } = Astro.props;
   .acties { margin-top: 34px; display: flex; gap: 22px; flex-wrap: wrap; align-items: center; }
   @keyframes heroIn { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: none; } }
   @media (prefers-reduced-motion: reduce) { .tekst, .beeldwrap { animation: none; } }
-  @media (max-width: 700px) { .tekst { padding: 0 var(--kader-pad-m) 48px; } }
+  @media (max-width: 700px) {
+    .tekst { padding: 0 var(--kader-pad-m) 48px; }
+    /* CTA's prominent op mobiel: primair vol, alles gestapeld en volle breedte */
+    .acties { flex-direction: column; align-items: stretch; gap: 16px; margin-top: 30px; }
+    .acties :global(.knop) { width: 100%; background: var(--kleur-been); color: var(--kleur-inkt); border-color: var(--kleur-been); padding: 18px 20px; }
+    .acties :global(.hero-link) { text-align: center; padding: 6px 0 3px; }
+  }
 </style>

@@ -11,13 +11,31 @@ if (!rustig) {
     if (el.dataset.reveal) el.style.transitionDelay = el.dataset.reveal + 'ms';
   });
   beeld.forEach((el) => el.classList.add('reveal-beeld'));
+
+  const wachtend = new Set([...tekst, ...beeld]);
+  const onthul = (el) => { el.classList.add('toon'); wachtend.delete(el); io.unobserve(el); };
+
   const io = new IntersectionObserver((entries) => {
-    for (const e of entries) {
-      if (e.isIntersecting) { e.target.classList.add('toon'); io.unobserve(e.target); }
-    }
+    for (const e of entries) if (e.isIntersecting) onthul(e.target);
   }, { threshold: .12, rootMargin: '0px 0px -40px 0px' });
-  tekst.forEach((el) => io.observe(el));
-  beeld.forEach((el) => io.observe(el));
+  wachtend.forEach((el) => io.observe(el));
+
+  /* vangnet: bij (snel) scrollen kan een element in één frame de viewport
+     passeren zonder dat de observer vuurt — veeg alles open dat de
+     triggerlijn al voorbij is */
+  let veegBezig = false;
+  const veeg = () => {
+    veegBezig = false;
+    const grens = window.innerHeight - 40;
+    wachtend.forEach((el) => {
+      const r = el.getBoundingClientRect();
+      if (r.top < grens || r.bottom < 0) onthul(el);
+    });
+    if (!wachtend.size) window.removeEventListener('scroll', vraagVeeg);
+  };
+  const vraagVeeg = () => { if (!veegBezig) { veegBezig = true; requestAnimationFrame(veeg); } };
+  window.addEventListener('scroll', vraagVeeg, { passive: true });
+  vraagVeeg();
 }
 
 /* ---- header: transparant boven de hero, inkt zodra je scrolt ---- */

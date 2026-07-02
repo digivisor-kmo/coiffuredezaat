@@ -42,9 +42,13 @@ const items = [
 <style>
   header {
     position: fixed; top: 0; left: 0; right: 0; z-index: 60;
-    background: transparent;
-    transition: background .4s ease, box-shadow .4s ease;
+    /* leesbaarheidsgradient boven de hero: logo en nav staan nooit op
+       ongefilterd beeld */
+    background: linear-gradient(180deg, rgba(25,24,23,.62) 0%, rgba(25,24,23,.32) 60%, rgba(25,24,23,0) 100%);
+    padding-bottom: 26px;
+    transition: background .4s ease, padding .4s ease;
   }
+  header.vast { padding-bottom: 0; }
   header.vast { background: var(--kleur-inkt); box-shadow: 0 1px 0 rgba(247,244,238,.08); }
 
   .hgrid { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 0 var(--kader-pad); height: 84px; max-width: var(--kader-max); margin: 0 auto; }
